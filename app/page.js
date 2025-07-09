@@ -6,8 +6,8 @@ import Header from '@/components/Header';
 
 export default function Home() {
   return (
-  <div className="px-4 py-6 max-w-6xl mx-auto">
-    <Header />
+  <div className="px-20">
+    <Header/>
      
     </div>
   );
