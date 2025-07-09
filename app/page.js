@@ -1,12 +1,14 @@
 import React from 'react';
 import HallCard from '@/components/HallCard';
 import { halls } from '@/data/halls';
+import Header from '@/components/Header';
 
 
 export default function Home() {
   return (
   <div className="px-4 py-6 max-w-6xl mx-auto">
-      <h1 className="text-3xl font-bold mb-2 text-red-900">Найди свою идеальную Тойхану</h1>
+    <Header />
+      {/* <h1 className="text-3xl font-bold mb-2 text-red-900">Найди свою идеальную Тойхану</h1>
       <p className="text-gray-600 mb-6">Смотри фото, цены и бронируй прямо сейчас</p>
 
       <div className="flex flex-col sm:flex-row gap-4 mb-6">
@@ -31,7 +33,7 @@ export default function Home() {
         {halls.map((hall) => (
           <HallCard key={hall.id} hall={hall} />
         ))}
-      </div>
+      </div> */}
     </div>
   );
 }
