@@ -2,13 +2,14 @@ import React from 'react';
 import HallCard from '@/components/HallCard';
 import { halls } from '@/data/halls';
 import Header from '@/components/Header';
+import Banner from '@/components/Banner';
 
 
 export default function Home() {
   return (
-  <div className="px-4 py-6 max-w-6xl mx-auto">
+  <div className=" mx-auto">
     <Header />
-     
+    <Banner/>
     </div>
   );
 }

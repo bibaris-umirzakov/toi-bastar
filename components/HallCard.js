@@ -1,5 +1,3 @@
-
-
 export default function HallCard({ hall })  {
   return (
     <div style={{ border: "3px dashed #ccc", padding: 10, marginTop: 20 }}>
