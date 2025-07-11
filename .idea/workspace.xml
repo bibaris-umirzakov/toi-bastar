@@ -4,11 +4,53 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1be44a20-7e17-45bb-ba07-4e3462553a7a" name="Changes" comment="" />
+    <list default="true" id="1be44a20-7e17-45bb-ba07-4e3462553a7a" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/components/Catalog.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/Choice.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/Contact.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Vector (1).png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Vector.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/app_store.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/banket.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/banquet.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/buildings.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/cafe.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/clock.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/google_play.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/icons/buildings.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/icons/clock.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/icons/messages-2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/icons/wallet.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/instagram.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/instagram_icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/messages-2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/restoran.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/svg1530.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/telegram.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/telegram_icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/wallet.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/whatsapp.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/whatsapp_icon.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/globals.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Footer.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Footer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Header.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/postcss.config.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/postcss.config.mjs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -21,25 +63,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "askhat",
-    "js.debugger.nextJs.config.created.client": "true",
-    "js.debugger.nextJs.config.created.server": "true",
-    "junie.onboarding.icon.badge.shown": "true",
-    "last_opened_file_path": "C:/Users/askhat/toi-bastar",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;askhat&quot;,
+    &quot;js.debugger.nextJs.config.created.client&quot;: &quot;true&quot;,
+    &quot;js.debugger.nextJs.config.created.server&quot;: &quot;true&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/askhat/toi-bastar/public&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\WebStorm 2025.1.3\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\askhat\toi-bastar\public" />
+      <recent name="C:\Users\askhat\toi-bastar\public\icons" />
+    </key>
+  </component>
   <component name="RunManager" selected="npm.Next.js: server-side">
     <configuration name="Next.js: debug client-side" type="JavascriptDebugType" uri="http://localhost:3000/">
       <method v="2" />
@@ -70,7 +119,15 @@
       <option name="presentableId" value="Default" />
       <updated>1752061983825</updated>
       <workItem from="1752061985081" duration="1281000" />
-      <workItem from="1752063527674" duration="2188000" />
+      <workItem from="1752063527674" duration="6412000" />
+      <workItem from="1752075413479" duration="2895000" />
+      <workItem from="1752112550565" duration="4329000" />
+      <workItem from="1752126523750" duration="6908000" />
+      <workItem from="1752142381111" duration="6212000" />
+      <workItem from="1752154678957" duration="6167000" />
+      <workItem from="1752195449701" duration="5345000" />
+      <workItem from="1752213290745" duration="1100000" />
+      <workItem from="1752230653965" duration="5170000" />
     </task>
     <servers />
   </component>
