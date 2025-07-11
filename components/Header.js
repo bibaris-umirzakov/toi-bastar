@@ -8,7 +8,7 @@ export default function Header() {
 
   return (
 
-    <div className="flex items-center justify-between px-20 py-4 bg-white shadow-md relative">
+    <div className="flex items-center justify-between md:px-20 px-5 py-4 bg-white shadow-md relative">
       <img src="./Logo.png" className="w-[150px] h-auto" alt="Logo" />
 
       
