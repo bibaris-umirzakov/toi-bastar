@@ -11,7 +11,7 @@ import Catalog from "@/components/Catalog";
 
 export default function Home() {
   return (
-  <div className="px-4 py-6 max-w-6xl mx-auto">
+  <div className="mx-auto">
      <Header />
      <Banner/>
      <HowItWork />

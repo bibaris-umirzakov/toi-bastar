@@ -14,7 +14,7 @@ export default function Header() {
     </div>
     <button className="bg-[#FFA500] text-white px-4 py-2 rounded-[10px] hover:bg-gray-100 transition whitespace-nowrap text-base font-normal">
         Стать партнёром
-
+</button>
 
       </div>
   );
