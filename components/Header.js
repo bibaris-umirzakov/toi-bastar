@@ -7,6 +7,7 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
+
     <div className="flex items-center justify-between px-20 py-4 bg-white shadow-md relative">
       <img src="./Logo.png" className="w-[150px] h-auto" alt="Logo" />
 
@@ -48,5 +49,6 @@ export default function Header() {
         </div>
       )}
     </div>
+
   );
 }
