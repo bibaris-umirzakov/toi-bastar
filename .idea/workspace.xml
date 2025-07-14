@@ -5,40 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1be44a20-7e17-45bb-ba07-4e3462553a7a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/components/Catalog.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/Choice.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/Contact.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/Vector (1).png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/Vector.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/app_store.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/banket.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/banquet.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/buildings.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/cafe.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/clock.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/google_play.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/icons/buildings.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/icons/clock.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/icons/messages-2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/icons/wallet.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/instagram.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/instagram_icon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/messages-2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/restoran.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/svg1530.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/telegram.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/telegram_icon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/wallet.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/whatsapp.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/whatsapp_icon.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/arrow.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/globals.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Catalog.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Catalog.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/Footer.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Footer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Header.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/postcss.config.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/postcss.config.mjs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,11 +99,25 @@
       <workItem from="1752154678957" duration="6167000" />
       <workItem from="1752195449701" duration="5345000" />
       <workItem from="1752213290745" duration="1100000" />
-      <workItem from="1752230653965" duration="5170000" />
+      <workItem from="1752230653965" duration="8987000" />
+      <workItem from="1752369234284" duration="1410000" />
+      <workItem from="1752462539566" duration="3485000" />
+      <workItem from="1752490703212" duration="1422000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
