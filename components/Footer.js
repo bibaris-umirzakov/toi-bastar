@@ -1,7 +1,7 @@
 export default function Footer() {
     return(
         <div className="Footer bg-[#89650B]     ">
-            <section className="footer w-full  overflow-hidden mt-[88px] pl-[101px] pb-[112px] max-sm:pl-[30px]">
+            <section className="footer w-full  overflow-hidden pl-[101px] pb-[112px] max-sm:pl-[30px]">
                 <div className="footer_title pt-[67px] text-[40px] font-bold text-[#FFA500]" >ToiBastar</div>
                 <div className="footer_wrap flex direction-row items-baseline max-sm:flex max-sm:flex-col">
                     <div className="footer_wrap_item flex-[1_1_535px] max-sm:flex-[1_1_259px]">
