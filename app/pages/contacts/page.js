@@ -1,3 +1,4 @@
+import BannerBanket from '@/components/BannerBanket';
 import Header from '@/components/Header';
 import React from 'react';
 
@@ -6,8 +7,12 @@ import React from 'react';
 
 export default function Contacts() {
   return (
-  <div className="">
-<Header />
-    </div>
+
+  <div>
+ <Header />
+  <BannerBanket />
+  </div>
+
+
   );
 }
