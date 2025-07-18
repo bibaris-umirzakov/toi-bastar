@@ -11,7 +11,7 @@ export default function Catalog() {
     const catalogItems = [
         { title: "Кафе", image: "/cafe.png" },
         { title: "Ресторан", image: "/restoran.png" },
-        { title: "Банкетный зал", image: "/banquet.png" },
+        { title: "Банкетный зал", image: "/banquet.jpg" },
         // добавьте больше карточек при необходимости
     ];
     return(
