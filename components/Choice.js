@@ -7,7 +7,7 @@ export default function Choice() {
             <div className=" md:bg-[#FFF9ED] md:w-1/2 px-6 md:px-0 md:mt-[245px] md:pl-[50px]">
                 <div className="flex max-w-[615px] mt-[50px] md:mb-[25px] md:mt-[60px] max-sm:flex max-sm:justify-center max-sm:mb-[46px]"><button className="text-[13px] rounded-xl bg-[#FDEDD8] text-[#FFA500] font-medium py-[10px] px-[30px] tracking-85">ПОЧЕМУ ВЫБИРАЮТ НАС?</button></div>
                 <div className="text-[38px] md:text-[38px] leading-tight font-medium mb-[56px]  max-sm:text-center sm:text-left max-sm:text-[28px] max-sm:font-bold ">Мы предлагаем лучшие условия</div>
-                <div className="flex mb-[30px] pr-3">
+                <div className="flex mb-[30px] pr-3 md:pr-0">
                     <div className="p-[20px] bg-[#FDEDD8] rounded-2xl mr-[24px] h-[64px] min-w-[64px] max-sm:flex max-sm:flex-none "><img src="wallet.png" alt=""/></div>
                     <div className="block">
                             <p className="text-[20px] font-medium">Ценовая политика</p>
