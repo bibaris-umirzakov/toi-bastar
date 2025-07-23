@@ -9,7 +9,7 @@ export default function Contact() {
         <div className="grid md:grid-cols-3 gap-y-8 gap-x-12">
         
             <div className="flex flex-col gap-2 order-1">
-                <h3 className="text-gray-600 font-medium">Адрес:</h3>
+                <h3 className="text-gray-600 foпшеnt-medium">Адрес:</h3>
                 <p className="font-semibold">160000, г. Шымкент.</p>
             </div>
 

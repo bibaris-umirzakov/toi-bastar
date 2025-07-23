@@ -1,4 +1,6 @@
-import BannerBanket from '@/components/BannerBanket';
+
+import Filter from '@/components/Filter';
+
 import Header from '@/components/Header';
 import React from 'react';
 
@@ -7,10 +9,11 @@ import React from 'react';
 
 export default function Contacts() {
   return (
-  <div>
- <Header />
-  <BannerBanket />
-  </div>
+
+  <div className="">
+<Header />
+<Filter />
+    </div>
 
   );
 }
