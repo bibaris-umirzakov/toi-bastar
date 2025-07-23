@@ -7,6 +7,7 @@ import Choice from "@/components/Choice";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import Catalog from "@/components/Catalog";
+import HallsList from "@/components/BanquetHalls/HallsList";
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
       <Catalog />
       <Contact />
       <Footer />
+      <HallsList />
     </div>
   );
 }
