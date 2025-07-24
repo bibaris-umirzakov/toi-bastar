@@ -1,6 +1,7 @@
 import React from "react";
 
 export default function Footer() {
+
     return (
         <footer className="bg-[#a97a00] text-white px-4 py-10">
             <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:justify-between gap-8">
@@ -51,5 +52,6 @@ export default function Footer() {
                 © 2025 ToiBastar® Global Inc.
             </div>
         </footer>
+
     );
 }
