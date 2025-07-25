@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Contact() {
     return (
-    <div className="Contacrs">
+    <div className="Contacts px-20 bg-[#FFF9ED] h-80">
         <section className="contact">
             <div className="contact_title mb-[75px] text-[35px] font-bold max-sm:text-center">Наши контакты</div>
             <div className="contact_wrap flex direction-row justify-between max-sm:flex-col">
@@ -24,9 +24,9 @@ export default function Contact() {
                     <div className="contact_item_social  max-sm:mt-[50px]">
                         <h3>Соц. сети:</h3>
                         <div className="contact_item_socials_icons flex direction-row justify-start max-sm:justify-start">
-                            <a href="" className="max-sm:mr-[10px] mr-[10px]"><img src="telegram.png" alt=""/></a>
-                            <a href="" className="max-sm:mr-[10px] mr-[10px]"><img src="whatsapp.png" alt=""/></a>
-                            <a href=""><img src="instagram.png" alt=""/></a>
+                            <a href="" className="max-sm:mr-[10px] mr-[10px]"><img src="/telegram.png" alt=""/></a>
+                            <a href="" className="max-sm:mr-[10px] mr-[10px]"><img src="/whatsapp.png" alt=""/></a>
+                            <a href="" className="max-sm:mr-[10px] mr-[10px]"><img src="/instagram.png" alt=""/></a>
                         </div>
 
                     </div>
