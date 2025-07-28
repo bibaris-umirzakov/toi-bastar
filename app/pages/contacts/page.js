@@ -4,7 +4,7 @@ import Filter from '@/components/Filter';
 import Header from '@/components/Header';
 import React from 'react';
 
-
+import BannerBanket from '@/components/BannerBanket';
 
 
 export default function Contacts() {
@@ -12,6 +12,7 @@ export default function Contacts() {
 
   <div className="">
 <Header />
+<BannerBanket />
 <Filter />
     </div>
 
