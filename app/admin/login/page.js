@@ -18,6 +18,8 @@ export default function AdminLogin() {
 
     if (res.ok) {
       localStorage.setItem('isAdmin', 'true')
+      localStorage.setItem('adminLoginTime', Date.now().toString())
+
       router.push('/admin')
     } else {
       setError('Неверный логин или пароль')
