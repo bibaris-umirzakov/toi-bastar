@@ -1,31 +1,22 @@
-import Image from "next/image";
-import { Great_Vibes } from 'next/font/google';
-
-const greatVibes = Great_Vibes({ subsets: ['latin'], weight: '400' });
-
-
+import Image from "next/image"; 
 export default function BannerBanket() {
   return (
-  <div className="px-20">
-       <div className="bg-[url(/Banket/bg.png)] rounded h-[550px] bg-cover bg-center bg-no-repeat mt-[60px] ">
+  <div className={`px-4 sm:px-6 md:px-10 lg:px-20 `}>
+       <div className="relative bg-[url(/Banket/bg.png)] rounded-lg md:rounded-xl lg:rounded-2xl h-[300px] sm:h-[400px] md:h-[500px] lg:h-[550px] bg-cover bg-center bg-no-repeat mt-8 sm:mt-12 md:mt-[60px]">
        
-    <div className="relative  w-[700px] h-[300px]">
-  <Image
-    src="/Banket/Intersect.png"
-    alt="Фон банкетного зала"
-    fill
-    className="object-cover rounded-xl mt-[255px]  "
-  />
-  
- 
-  <div className="absolute mt-[360px] ml-[50px] rounded-lg z-10 max-w-[90%] ">
-    <h2 className="text-[#c3a560] great-vibes-text  text-4xl font-serif italic leading-snug ">
-      Берегите своё<br />время – мы всё организуем
-    </h2>
-  </div>
-</div>
-
-       </div>
-  </div>
+           <div className="absolute bottom-0 left-0 w-full sm:w-[80%] md:w-[700px] h-[150px] sm:h-[200px] md:h-[250px] lg:h-[300px]">
+          <Image
+            src="/Banket/ItemBannerd.png"
+            alt="Банкетный зал"
+            fill
+            className="object-cover rounded-b-lg md:rounded-b-xl lg:rounded-b-2xl"
+            priority
+          />
+        
+          
+        </div>
+      </div>
+    </div>
   );
 }
+  
