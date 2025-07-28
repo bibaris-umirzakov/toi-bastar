@@ -3,6 +3,7 @@ import Link from "next/link";
 export default function Contact() {
     return (
     <div className="Contacrs">
+
         <section className="contact">
             <div className="contact_title mb-[75px] text-[35px] font-bold max-sm:text-center">Наши контакты</div>
             <div className="contact_wrap flex direction-row justify-between max-sm:flex-col">
