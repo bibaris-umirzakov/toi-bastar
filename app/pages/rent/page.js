@@ -2,6 +2,9 @@ import Header from '@/components/Header';
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import Footer from '@/components/Footer';
+import Contact from '@/components/Contact';
+import Teams from '@/components/Teams';
 
 export default function Rent() {
   return (
@@ -25,6 +28,9 @@ export default function Rent() {
     className='rounded-lg border-2 border-[#FFA500] text-[#FFA500] px-4 py-2' 
     >Посмотреть залы</Link>
     </div>
+    <Teams />
+    <Contact />
+    <Footer />
     </div>
   );
 }
