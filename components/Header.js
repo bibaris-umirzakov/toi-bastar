@@ -9,7 +9,7 @@ export default function Header() {
   return (
 
     <div className="flex items-center justify-between md:px-20 px-5 py-4 bg-white shadow-md relative">
-      <img src="./Logo.png" className="w-[150px] h-auto" alt="Logo" />
+      <img src="/Logo.png" className="w-[150px] h-auto" alt="Logo" />
 
       
       <div className="hidden md:flex gap-6 text-[16px] font-bold">

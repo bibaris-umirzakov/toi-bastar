@@ -1,6 +1,4 @@
 import React from 'react';
-import HallCard from '@/components/HallCard';
-import { halls } from '@/data/halls';
 import Header from '@/components/Header';
 import HowItWork from "@/components/HowItWork";
 import Choice from "@/components/Choice";

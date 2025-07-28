@@ -1,4 +1,3 @@
-import Link from "next/link";
 
 export default function Contact() {
     return (
@@ -25,9 +24,9 @@ export default function Contact() {
                     <div className="contact_item_social  max-sm:mt-[50px]">
                         <h3>Соц. сети:</h3>
                         <div className="contact_item_socials_icons flex direction-row justify-start max-sm:justify-start">
-                            <a href="" className="max-sm:mr-[10px] mr-[10px]"><img src="telegram.png" alt=""/></a>
-                            <a href="" className="max-sm:mr-[10px] mr-[10px]"><img src="whatsapp.png" alt=""/></a>
-                            <a href=""><img src="instagram.png" alt=""/></a>
+                            <a href="" className="max-sm:mr-[10px] mr-[10px]"><img src="" alt=""/></a>
+                            <a href="" className="max-sm:mr-[10px] mr-[10px]"><img src="" alt=""/></a>
+                            <a href=""><img src="" alt=""/></a>
                         </div>
 
                     </div>
