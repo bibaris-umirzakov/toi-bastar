@@ -3,7 +3,7 @@ import SideBar from "@/components/SideBar";
 export default function Admin() {
   return (
 
-  <div className="mt-5 ml-5">
+  <div className="mx-auto">
     <SideBar/>
     </div>
 
