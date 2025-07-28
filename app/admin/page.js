@@ -1,11 +1,14 @@
 'use client'
+import SideBar from "@/components/SideBar";
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
+
 
 export default function AdminPage() {
   const [isAllowed, setIsAllowed] = useState(false)
   const [checked, setChecked] = useState(false)
   const router = useRouter()
+
 
   useEffect(() => {
     const isAdmin = localStorage.getItem('isAdmin')
@@ -26,6 +29,7 @@ export default function AdminPage() {
           router.replace('/admin/login')
         }, 20 * 60 * 1000 - diff)
 
+
         return () => clearTimeout(timeout)
       } else {
         localStorage.removeItem('isAdmin')
@@ -42,8 +46,8 @@ export default function AdminPage() {
 
   return (
     <div className="p-8">
-      <div className="flex justify-between items-center mb-4">
-        <h1 className="text-2xl font-bold">Админка: Добавить Тойхану</h1>
+      <div className="flex justify-between items-center mb-4"> 
+    <SideBar/>
         <button
           onClick={() => {
             localStorage.removeItem('isAdmin')
