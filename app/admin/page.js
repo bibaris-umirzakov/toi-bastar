@@ -45,6 +45,7 @@ export default function AdminPage() {
   if (!isAllowed) return null
 
   return (
+    <div className="mx-auto">
     <div className="p-8">
       <div className="flex justify-between items-center mb-4"> 
     <SideBar/>
@@ -60,5 +61,6 @@ export default function AdminPage() {
         </button>
       </div>
     </div>
+  </div>
   )
 }
