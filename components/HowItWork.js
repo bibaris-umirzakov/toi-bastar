@@ -1,9 +1,10 @@
 import Link from "next/link";
 
-
 export default function HowItWork() {
     return (
         <div className="HowItWork work bg-white  mt-[80px] ">
+
+
             <section className="work bg-white ">
                 <div className="work_btn flex justify-center  "><button className=" text-base sm:text-sm rounded  bg-[#F6E9D1]  text-[#FFA500] font-bold pt-[12px] pb-[12px] pl-[32px] pr-[32px] flex  items-center">КАК ЭТО РАБОТАЕТ?</button></div>
                 <h1 className="text-[38px] text-center mt-[32px] mb-[80px] max-sm:mb-[50px]" >Как найти тойхану в 3 шага</h1>
