@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Weather — Monthly Forecast (Yandex-style)</title>
+  <style>
+    :root{
+      --bg:#ffffff; --card:#0b1220; --muted:#9aa3b2; --accent:#60a5fa;
+      --panel:#121316;
+      --muted:#9aa0a6;
+      --accent:#ff6b00;
+      --card:#17181b;
+      --glass: rgba(255,255,255,0.03);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;}
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;background:var(--bg);color:#000000}
+
+    .app{display:flex;gap:24px;min-height:100vh;padding:28px}
+
+    /* Sidebar */
+    .sidebar{width:260px; background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent); border-radius:16px; padding:20px; display:flex; flex-direction:column; gap:18px}
+    .logo{display:flex;align-items:center;gap:12px;font-weight:700;font-size:20px}
+    .logo .dot{width:36px;height:36px;border-radius:50%;background:linear-gradient(45deg,#ff4d4d,#ffb86b);display:inline-flex;align-items:center;justify-content:center;color:#111;font-weight:700}
+    nav{margin-top:18px;display:flex;flex-direction:column;gap:10px}
+    nav a{padding:10px 12px;border-radius:10px;color:var(--muted);text-decoration:none;cursor:pointer}
+    .nav a.active{background:var(--glass); color:#e6eef8}
+
+    /* Main panel */
+    .main{flex:1}
+    .topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+    .search{background:var(--card);padding:10px 14px;border-radius:12px;display:flex;align-items:center;gap:10px;width:520px}
+    .search input{background:transparent;border:0;outline:0;color:inherit;font-size:15px}
+
+    .panel{background:white;padding:20px;border-radius:14px,var}
+    .panel h1{margin:0;font-size:20px}
+    .months{display:flex;gap:8px;margin-top:14px;margin-bottom:10px}
+    .months button{background:transparent;border:0;color:var(--muted);padding:8px 12px;border-radius:999px;cursor:pointer;transition:0.2s}
+    .months button.active{background:var(--card);color:#fff}
+
+    /* Calendar grid */
+    .calendar{margin-top:8px;border-radius:10px;overflow:hidden}
+    .weekdays{display:grid;grid-template-columns:repeat(7,1fr);background:rgba(255,255,255,0.02);padding:10px 12px;font-size:13px;color:var(--muted)}
+    .days{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;padding:12px;background:var(--glass)}
+
+    .day{background:linear-gradient(180deg, rgba(255,255,255,0.015), transparent);padding:12px;border-radius:10px;min-height:90px;display:flex;flex-direction:column;justify-content:space-between;transition:0.2s}
+    .day:hover{background:rgba(255,255,255,0.05)}
+    .day.dim{opacity:0.35}
+    .day .top{display:flex;justify-content:space-between;align-items:center}
+    .date{font-weight:600}
+    .icon{width:36px;height:36px;display:flex;align-items:center;justify-content:center}
+    .temps{display:flex;flex-direction:column;align-items:flex-end;font-size:13px}
+    .hi{font-weight:700}
+    .lo{color:var(--muted);font-size:12px}
+
+    /* Right column with ads/cards */
+    .side-right{width:320px}
+    .card{background:var(--card);padding:16px;border-radius:12px;margin-bottom:12px;color:var(--muted);min-height:100px;display:flex;align-items:center;justify-content:center;text-align:center}
+
+    /* responsive */
+    @media (max-width:1100px){.sidebar{display:none}.app{padding:16px}}
+    @media (max-width:800px){.search{width:100%}}
+  </style>
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="logo"><span class="dot">A</span> <div>Погода</div></div>
+      <nav id="sidebarNav">
+        <a class="active">Главная</a>
+        <a href="UV_Index.html">УФ-индекс</a>
+        <a href="pollen.html">Активность пыльцы</a>
+        <a href="weather_month.html">Прогноз на месяц</a>
+        <a href="the_weather_for_10days.html">На 10 дней</a>
+      </nav>
+      <div style="margin-top:16px">
+        <button style="width:100%;padding:12px;border-radius:10px;border:0;background:linear-gradient(90deg,#ff7a5a,#ffb86b);color:#111;font-weight:700;cursor:pointer">Скачать приложение</button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <div class="topbar">
+        <div class="search">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M11 18a7 7 0 1 1 0-14 7 7 0 0 1 0 14z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <input placeholder="Шымкент" />
+        </div>
+        <div style="display:flex;gap:12px;align-items:center">
+          <button style="background:transparent;border:0;color:var(--muted);cursor:pointer">В избранное</button>
+          <div style="width:36px;height:36px;border-radius:50%;background:var(--card)"></div>
+        </div>
+      </div>
+
+      <section class="panel">
+        <h1>Погода в Шымкенте на месяц</h1>
+        <div class="months" id="months">
+          <button class="active">30 дней</button>
+          <button>Янв</button>
+          <button>Февр</button>
+          <button>Март</button>
+          <button>Апр</button>
+          <button>Май</button>
+          <button>Июн</button>
+          <button>Июл</button>
+        </div>
+
+        <div class="calendar">
+          <div class="weekdays">
+            <div>Пн</div><div>Вт</div><div>Ср</div><div>Чт</div><div>Пт</div><div style="color:var(--accent)">Сб</div><div style="color:var(--accent)">Вс</div>
+          </div>
+          <div class="days" id="days"></div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script>
+    const daysContainer = document.getElementById('days');
+    const monthsButtons = document.querySelectorAll('#months button');
+    const navLinks = document.querySelectorAll('#sidebarNav a');
+
+    // icons
+    function Icon(type){
+      if(type==='sun') return `<svg class="icon" viewBox="0 0 24 24" width="36" height="36" fill="none"><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>`;
+      if(type==='cloud') return `<svg class="icon" viewBox="0 0 24 24" width="36" height="36" fill="none"><path d="M20 17.5A4.5 4.5 0 0 0 15.5 13H14a4 4 0 0 0-7.9 0A3.5 3.5 0 0 0 6 20.5h14z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+      if(type==='rain') return `<svg class="icon" viewBox="0 0 24 24" width="36" height="36" fill="none"><path d="M20 16.5A4.5 4.5 0 0 0 15.5 12H14a4 4 0 0 0-7.9 0A3.5 3.5 0 0 0 6 19.5h14z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 21v2M12 21v2M16 21v2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>`;
+      return '';
+    }
+
+    function sample(i){
+      const t = 18 + Math.round(6*Math.sin(i/3) + (i%3));
+      const low = t - (4 + (i%2));
+      const types = ['sun','cloud','rain'];
+      const type = types[(i+2)%3];
+      return {day:i,hi:t,lo:low,type};
+    }
+
+    function renderDays(){
+      daysContainer.innerHTML = '';
+      const startWeekday = 2;
+      for(let i=0;i<startWeekday;i++){
+        const blank = document.createElement('div'); blank.className='day dim'; daysContainer.appendChild(blank);
+      }
+      for(let d=1; d<=30; d++){
+        const data = sample(d);
+        const el = document.createElement('div'); el.className='day';
+        el.innerHTML = `
+          <div class="top"><div class="date">${data.day}</div><div class="icon">${Icon(data.type)}</div></div>
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div style="font-size:13px;color:var(--muted)">оценка: ${data.type}</div>
+            <div class="temps"><div class="hi">+${data.hi}°</div><div class="lo">+${data.lo}°</div></div>
+          </div>
+        `;
+        daysContainer.appendChild(el);
+      }
+      const nodes = daysContainer.children;
+      for(let i=0;i<nodes.length;i++){
+        const col = i%7;
+        if(col===5||col===6){
+          nodes[i].style.boxShadow = 'inset 0 0 0 1px rgba(255,107,0,0.05)';
+        }
+      }
+    }
+    renderDays();
+
+    // Click events for months
+    monthsButtons.forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        monthsButtons.forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        renderDays();
+      });
+    });
+
+    // Click events for sidebar
+    navLinks.forEach(link=>{
+      link.addEventListener('click',()=>{
+        navLinks.forEach(l=>l.classList.remove('active'));
+        link.classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>

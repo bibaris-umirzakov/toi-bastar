@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Global Warming Diagram (1880–2100)</title>
+  <style>
+    :root{
+      --bg:#f6f8fb;
+      --card:#ffffff;
+      --muted:#667085;
+      --accent:#f59e0b; /* amber */
+      --good:#059669; /* green */
+      --danger:#dc2626; /* red */
+    }
+    html,body{height:100%;margin:0;font-family:Inter,ui-sans-serif,system-ui,Segoe UI,Roboto,"Helvetica Neue",Arial;}
+    body{background:var(--bg);display:flex;align-items:center;justify-content:center;padding:24px;}
+    .card{width:100%;max-width:980px;background:var(--card);border-radius:12px;box-shadow:0 8px 30px rgba(16,24,40,0.08);padding:20px;}
+    header{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:14px;}
+    h1{font-size:20px;margin:0;}
+    p.lead{margin:6px 0 0;color:var(--muted);font-size:13px;}
+    .controls{display:flex;gap:8px;align-items:center;}
+    button{background:#0f172a;color:#fff;border:0;padding:8px 12px;border-radius:8px;cursor:pointer;font-size:13px;box-shadow:0 6px 18px rgba(2,6,23,0.08);}
+    button.secondary{background:#eef2ff;color:#111;}
+    canvas{width:100%!important;height:480px!important;}
+    .legend-note{margin-top:10px;color:var(--muted);font-size:13px;}
+    footer{margin-top:12px;color:var(--muted);font-size:12px;display:flex;justify-content:space-between;align-items:center;}
+    a.small{color:inherit;text-decoration:underline}
+    @media (max-width:600px){
+      canvas{height:360px!important;}
+      header{flex-direction:column;align-items:flex-start;gap:8px;}
+    }
+  </style>
+</head>
+<body>
+  <div class="card" role="region" aria-label="Global warming chart">
+    <header>
+      <div>
+        <h1>Global Average Temperature Anomaly (1880–2100)</h1>
+        <p class="lead">Observed history up to 2020 and three simplified projection scenarios for 21st century warming.</p>
+      </div>
+      <div class="controls" aria-hidden="false">
+        <button id="downloadBtn" title="Download chart as PNG">⬇️ Download PNG</button>
+        <button id="toggleProj" class="secondary" title="Toggle projection series">Toggle projections</button>
+      </div>
+    </header>
+
+    <canvas id="warmingChart" aria-label="Line chart of temperature anomalies"></canvas>
+
+    <div class="legend-note">
+      <strong>Notes:</strong> Anomaly baseline is a simplified reference (e.g., 1951–1980). The projection lines are illustrative (low/medium/high scenarios) — not a specific climate model output.
+    </div>
+
+    <footer>
+      <div>Data: simplified illustrative values • Chart: Chart.js</div>
+      <div><a class="small" href="#" id="infoLink">More info</a></div>
+    </footer>
+  </div>
+
+  <!-- Chart.js from CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    // YEARS: 1880 - 2100 every 5 years (for smoothness)
+    const years = [];
+    for (let y = 1880; y <= 2100; y += 5) years.push(y);
+
+    // HISTORICAL (illustrative): smaller fluctuations until recent rise
+    // We'll provide values up to 2020, then use projections (the arrays below handle that)
+    const historical = years.map(year => {
+      if (year <= 1940) return -0.15 + (year - 1880) * (0.0015);   // slow rise
+      if (year <= 1980) return 0.0 + (year - 1940) * (-0.0004);    // slight dip mid-century
+      if (year <= 2020) return -0.02 + (year - 1980) * (0.02);     // clear upward trend
+      return null; // placeholder -- replaced by projections below
+    });
+
+    // PROJECTIONS (illustrative, simplified)
+    // Low scenario: limited warming by 2100 (~+1.0°C above baseline)
+    // Medium scenario: ~+2.0°C
+    // High scenario: ~+4.0°C
+    function smoothProjection(startYear, endYear, startVal, endVal, yearsArray){
+      const arr = [];
+      const span = endYear - startYear;
+      for (const y of yearsArray){
+        if (y <= startYear) { arr.push(null); continue; }
+        // fraction along projection (clamped to 0..1)
+        const t = Math.min(1, (y - startYear) / span);
+        // gentle curve: use quadratic ease-in for acceleration
+        const val = startVal + (endVal - startVal) * (t * t);
+        arr.push(val);
+      }
+      return arr;
+    }
+
+    // find the index where 2020 is
+    const idx2020 = years.indexOf(2020);
+    const startVal = historical[idx2020]; // use last historical point as start
+    // produce projection arrays (values only for years >2020)
+    const projLow = smoothProjection(2020, 2100, startVal, startVal + 1.0, years);
+    const projMed = smoothProjection(2020, 2100, startVal, startVal + 2.0, years);
+    const projHigh = smoothProjection(2020, 2100, startVal, startVal + 4.0, years);
+
+    // Build final series: historical values up to 2020, then projections for >2020
+    const seriesHistorical = years.map((y,i) => {
+      // if historical[i] is a number, use it; otherwise null (chart default for gaps)
+      return (historical[i] !== null) ? Number(historical[i].toFixed(3)) : null;
+    });
+
+    const seriesLow = years.map((_,i) => (projLow[i] !== null ? Number(projLow[i].toFixed(3)) : null));
+    const seriesMed = years.map((_,i) => (projMed[i] !== null ? Number(projMed[i].toFixed(3)) : null));
+    const seriesHigh = years.map((_,i) => (projHigh[i] !== null ? Number(projHigh[i].toFixed(3)) : null));
+
+    // Optional: keep historical visible across full range (we show it as continuing but faded after 2020)
+    const historicalExtended = seriesHistorical.map((v,i) => {
+      if (v !== null) return v;
+      // extend line using medium projection after 2020 for visual continuity (faded style)
+      return seriesMed[i];
+    });
+
+    // Chart configuration
+    const ctx = document.getElementById('warmingChart').getContext('2d');
+
+    const data = {
+      labels: years,
+      datasets: [
+        {
+          label: 'Historical (observed)',
+          data: historicalExtended,
+          borderWidth: 2.5,
+          pointRadius: 4,
+          pointHoverRadius: 6,
+          tension: 0.25,
+          borderColor: '#0f172a',
+          backgroundColor: 'rgba(15,23,42,0.05)',
+          spanGaps: true,
+          // make line full opacity up to 2020 and slightly faded after
+          segment: {
+            borderColor: ctx => {
+              const idx = ctx.p0DataIndex;
+              return years[idx] <= 2020 ? '#0f172a' : '#9aa5b1';
+            }
+          }
+        },
+        {
+          label: 'Low scenario (≈ +1°C by 2100)',
+          data: seriesLow,
+          borderWidth: 2,
+          borderDash: [6,4],
+          pointRadius: 3,
+          tension: 0.3,
+          borderColor: '#059669',
+          backgroundColor: 'rgba(5,150,105,0.05)',
+          spanGaps: true
+        },
+        {
+          label: 'Medium scenario (≈ +2°C by 2100)',
+          data: seriesMed,
+          borderWidth: 2.5,
+          pointRadius: 3,
+          tension: 0.3,
+          borderColor: '#f59e0b',
+          backgroundColor: 'rgba(245,158,11,0.05)',
+          spanGaps: true
+        },
+        {
+          label: 'High scenario (≈ +4°C by 2100)',
+          data: seriesHigh,
+          borderWidth: 2,
+          borderDash: [4,4],
+          pointRadius: 3,
+          tension: 0.3,
+          borderColor: '#dc2626',
+          backgroundColor: 'rgba(220,38,38,0.05)',
+          spanGaps: true
+        }
+      ]
+    };
+
+    const chartOptions = {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: {
+        mode: 'nearest',
+        intersect: false
+      },
+      plugins: {
+        legend: {
+          position: 'top',
+          labels: {boxWidth:12,boxHeight:6,usePointStyle:true}
+        },
+        tooltip: {
+          callbacks: {
+            title: (ctx) => `Year: ${ctx[0].label}`,
+            label: (ctx) => `${ctx.dataset.label}: ${ctx.formattedValue} °C`
+          }
+        },
+        title: {
+          display: false
+        },
+        annotation: {}
+      },
+      scales: {
+        x: {
+          title: { display: true, text: 'Year' },
+          ticks: { maxRotation: 0, autoSkip: true, maxTicksLimit: 14 }
+        },
+        y: {
+          title: { display: true, text: 'Temperature Anomaly (°C)' },
+          suggestedMin: -0.5,
+          suggestedMax: 4.5,
+          grid: { drawBorder: false }
+        }
+      },
+      elements: {
+        point: {
+          hoverRadius: 6
+        }
+      }
+    };
+
+    // Create the chart
+    const warmingChart = new Chart(ctx, {
+      type: 'line',
+      data: data,
+      options: chartOptions
+    });
+
+    // Download button: export chart to PNG
+    document.getElementById('downloadBtn').addEventListener('click', () => {
+      const a = document.createElement('a');
+      a.href = warmingChart.toBase64Image('image/png', 1);
+      a.download = 'global_warming_1880-2100.png';
+      a.click();
+    });
+
+    // Toggle projection lines visibility
+    let projectionsVisible = true;
+    document.getElementById('toggleProj').addEventListener('click', function(){
+      projectionsVisible = !projectionsVisible;
+      // datasets 1..3 are projection datasets
+      for (let i=1; i<=3; i++){
+        warmingChart.data.datasets[i].hidden = !projectionsVisible;
+      }
+      this.textContent = projectionsVisible ? 'Hide projections' : 'Show projections';
+      warmingChart.update();
+    });
+
+    // Optional "more info" link - opens short explanation
+    document.getElementById('infoLink').addEventListener('click', (e)=>{
+      e.preventDefault();
+      const msg = `This chart uses illustrative temperature anomaly values: historical (to 2020) and simplified projection scenarios for the 21st century.\n\nLow/Medium/High scenarios are not specific model runs, they are conceptual lines to show how different emissions trajectories can produce very different outcomes by 2100. For rigorous model outputs, consult IPCC reports and observational datasets (NOAA, NASA/GISTEMP, Berkeley Earth).`;
+      alert(msg);
+    });
+    
+  </script>
+</body>
+</html>

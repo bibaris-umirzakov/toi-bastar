@@ -1,0 +1,580 @@
+🥇 Level 1 — Beginner (You just finished!)
+
+Goal: Understand Python syntax and logic.
+You already did: ✅
+
+Next focus:
+
+Practice combining loops and conditions
+
+Learn basic built-in functions (len(), range(), sum(), etc.)
+
+🥈 Level 2 — Intermediate
+
+Goal: Work with data structures and functions.
+Topics to learn:
+
+Lists, Tuples, Sets, Dictionaries (in detail)
+
+Functions (def, return values, parameters)
+
+File handling (read/write files)
+
+String methods (split(), replace(), join(), etc.)
+
+Loops + conditions together (nested logic)
+
+Example tasks:
+
+Write a function that returns the factorial of a number.
+
+Count vowels in a sentence.
+
+Read numbers from a text file and find their average.
+
+Find the most common word in a list.
+
+Create a contact book using a dictionary.
+
+🥉 Level 3 — Advanced Beginner / Pre-Advanced
+
+Goal: Start thinking like a developer.
+Topics:
+
+Error handling (try, except)
+
+Modules and importing (math, random, datetime)
+
+Working with JSON
+
+List comprehensions
+
+Lambda functions
+
+Example tasks:
+
+Generate 10 random numbers and sort them.
+
+Save and load user data in JSON format.
+
+Handle a division by zero error safely.
+
+Filter only even numbers from a list using lambda.
+
+Create a program that greets users depending on time of day (use datetime).
+
+🧠 Level 4 — OOP (Object-Oriented Programming)
+
+Goal: Learn classes, objects, and real structure.
+Topics:
+
+Classes & objects
+
+Constructors (__init__)
+
+Inheritance
+
+Encapsulation
+
+Example tasks:
+
+Create a Car class with brand, model, year.
+
+Add a method start_engine() that prints a message.
+
+Create a Student class and calculate GPA.
+
+Make a parent class Animal and child classes Dog, Cat.
+
+Simulate a simple bank account system with deposit/withdraw methods.
+
+🚀 Level 5 — Projects / Real-World Practice
+
+Now you build real mini-projects to combine everything:
+
+✅ To-do list app (save tasks in a file)
+
+✅ Simple calculator
+
+✅ Weather app (use API)
+
+✅ Fitness tracker
+
+✅ Password generator
+
+✅ Chatbot (basic text version)
+
+Level 1
+
+🐍 60 Easy Python Practice Tasks
+1. Hello World & Printing
+
+1️⃣ Print Hello, World!
+2️⃣ Print your name and age.
+3️⃣ Print three lines using only one print() command.
+
+2. Variables & Strings
+
+1️⃣ Create a variable name and print "Hi <name>".
+2️⃣ Ask user for their name and print "Welcome, <name>!".
+3️⃣ Ask for name and hobby, print "My name is <name> and I like <hobby>."
+
+3. Math Operations
+
+1️⃣ Add two numbers.
+2️⃣ Subtract two numbers.
+3️⃣ Multiply two numbers and print the result.
+
+4. Even or Odd
+
+1️⃣ Ask for one number → print even/odd.
+2️⃣ Ask for two numbers → say which one is even.
+3️⃣ Print all even numbers from 1 to 20 using a loop.
+
+5. Largest Number
+
+1️⃣ Find the largest of 2 numbers.
+2️⃣ Find the largest of 3 numbers.
+3️⃣ Find the smallest of 3 numbers.
+
+6. Number Check
+
+1️⃣ Check if number > 0 or not.
+2️⃣ Check if number is negative, positive, or zero.
+3️⃣ Ask for 2 numbers → print if both are positive.
+
+7. Multiplication Table
+
+1️⃣ Print table of 5.
+2️⃣ Ask user for a number → print table up to 10.
+3️⃣ Ask user for number → print table up to any chosen limit.
+
+8. Loops: Counting
+
+1️⃣ Print numbers 1–10.
+2️⃣ Print even numbers 2–20.
+3️⃣ Print numbers 10–1 in reverse.
+
+9. Lists: Summing
+
+1️⃣ Create list [2,4,6,8] → print sum.
+2️⃣ Ask user for 3 numbers → store in list → print sum.
+3️⃣ Print average of list [5,10,15,20].
+
+10. Strings: Length
+
+1️⃣ Ask for word → print its length.
+2️⃣ Ask for sentence → print how many characters.
+3️⃣ Ask for word → print first and last letter.
+
+11. Strings: Reverse
+
+1️⃣ Ask for word → print reversed.
+2️⃣ Reverse "python" without input.
+3️⃣ Ask for sentence → print reversed order of letters.
+
+12. Password Check
+
+1️⃣ Password = "python123" → check.
+2️⃣ Password = "openai" → allow 3 attempts.
+3️⃣ Passwords list = ["abc","123","python"] → check if user input matches any.
+
+13. Average Calculation
+
+1️⃣ Average of 3 numbers.
+2️⃣ Average of 5 numbers from user input.
+3️⃣ Average of numbers in list [10,20,30,40,50].
+
+14. Countdown
+
+1️⃣ Print 10 → 1 → "Blast off!".
+2️⃣ Ask user how long countdown should be.
+3️⃣ Print countdown from 20 but skip even numbers.
+
+15. Divisibility
+
+1️⃣ Check if number divisible by 3.
+2️⃣ Check if divisible by 3 and 5.
+3️⃣ Print all numbers 1–30 divisible by both 2 and 3.
+
+16. List of Squares
+
+1️⃣ Print squares of numbers 1–5.
+2️⃣ Ask for limit → print squares up to that number.
+3️⃣ Print only even squares (like 2², 4², 6²…).
+
+17. Word in Sentence
+
+1️⃣ Ask for sentence + word → check if inside.
+2️⃣ Count how many times word appears.
+3️⃣ Case-insensitive check (e.g. "Python" = "python").
+
+18. Replace Word or Character
+
+1️⃣ Replace spaces with _.
+2️⃣ Replace letter "a" with "@".
+3️⃣ Replace all " " with "👉".
+
+19. Dictionary Basics
+
+1️⃣ Create dictionary with name, age, city → print.
+2️⃣ Add new key "country".
+3️⃣ Ask user for key → print value.
+
+20. Guessing Game
+
+1️⃣ Secret = 7 → guess until right.
+2️⃣ Random number 1–10 → guess until right.
+3️⃣ Add hints like “Too high” or “Too low”.
+
+Level 2
+
+🥈 60 Intermediate Python Practice Tasks
+1. Functions (Basics)
+
+1️⃣ Create a function that prints "Hello from a function!"
+2️⃣ Create a function that takes your name and prints "Hello, <name>!"
+3️⃣ Create a function that takes two numbers and returns their sum.
+
+2. Functions (Return Values)
+
+1️⃣ Write a function that returns the square of a number.
+2️⃣ Write a function that returns if a number is even or odd.
+3️⃣ Write a function that takes 3 numbers and returns their average.
+
+3. Loops + Lists
+
+1️⃣ Print all elements of list [1,2,3,4,5].
+2️⃣ Print only even numbers from list.
+3️⃣ Multiply all elements of a list by 2.
+
+4. Nested Loops
+
+1️⃣ Print a square of * (5x5).
+2️⃣ Print a triangle of *.
+3️⃣ Print a multiplication table (1–5).
+
+5. Lists (Advanced)
+
+1️⃣ Create list [3,6,9,12] → print sum & length.
+2️⃣ Ask user to enter 5 numbers → store in list → print max and min.
+3️⃣ Remove duplicates from a list.
+
+6. Dictionaries
+
+1️⃣ Create dictionary for a student with name, age, grade.
+2️⃣ Add new key school = “Python Academy”.
+3️⃣ Loop through dictionary keys and print all values.
+
+7. Loops + Dictionaries
+
+1️⃣ Store 3 fruits with prices in dict and print each like: “Apple - 150₸”.
+2️⃣ Print only keys of dictionary.
+3️⃣ Find the total of all numeric values in a dictionary.
+
+8. Strings (Advanced)
+
+1️⃣ Count how many vowels are in a word.
+2️⃣ Replace all "a" with "@".
+3️⃣ Check if string is palindrome (same forward and backward).
+
+9. Files (Read)
+
+1️⃣ Read and print contents of data.txt.
+.    
+3️⃣ Count how many words are in file.
+
+10. Files (Write)
+
+1️⃣ Write “Hello File!” into a new file.
+2️⃣ Ask user for a sentence and save it into a file.
+3️⃣ Append new text each time program runs.
+
+11. Random Numbers
+
+1️⃣ Print 5 random numbers between 1–100.
+2️⃣ Guess a random number 1–10.
+3️⃣ Create a list of 10 random numbers and print the largest.
+
+12. Math Module
+
+1️⃣ Import math and print square root of 64.
+2️⃣ Use math.pi to calculate circle area.
+3️⃣ Round a number to 2 decimal places.
+
+13. Error Handling
+
+1️⃣ Try dividing by zero → handle with try/except.
+2️⃣ Ask user for a number and catch ValueError.
+3️⃣ Try opening missing file and handle FileNotFoundError.
+
+14. Lists + Loops + Conditions
+
+1️⃣ Given [5,12,7,18] print only numbers > 10.
+2️⃣ Replace all even numbers with 0.
+3️⃣ Count how many odd numbers there are.
+
+15. Functions + Loops
+
+1️⃣ Create function that takes list and prints all items.
+2️⃣ Function that takes list and returns only even numbers.
+3️⃣ Function that takes list and returns total sum.
+
+16. String Formatting
+
+1️⃣ Print "My name is <name> and I’m <age> years old" using f-string.
+2️⃣ Format price like “Item: Apple, Price: 150₸”.
+3️⃣ Align text to the right using format().
+
+17. Nested Data
+
+1️⃣ Create dictionary with list: {"fruits": ["apple","banana","orange"]} → print all fruits.
+2️⃣ Add new fruit "kiwi".
+3️⃣ Create list of dictionaries for students and print all names.
+
+18. Sorting
+
+1️⃣ Sort list [5,2,8,1] ascending.
+2️⃣ Sort list descending.
+3️⃣ Sort list of words alphabetically.
+
+19. Sets & Tuples
+
+1️⃣ Create tuple with 3 colors → print second color.
+2️⃣ Create set {1,2,3,3,4} → remove duplicates.
+3️⃣ Find intersection of two sets.
+
+20. Mini Projects
+
+1️⃣ 🧮 Simple Calculator: add, subtract, multiply, divide (user input).
+2️⃣ 📖 Word Counter: count how many times each word appears in a sentence.
+3️⃣ 🧑‍🎓 Student Grades: store names & marks, then print average mark.
+
+Level 3 
+
+🧠 60 Python Practice Tasks — Level 3 (Advanced Beginner)
+1. Advanced Functions
+
+1️⃣ Write a function that returns factorial of a number.
+2️⃣ Write a function that counts vowels in a string.
+3️⃣ Write a function that checks if a number is prime.
+
+2. Default & Keyword Arguments
+
+1️⃣ Create a function that greets "Hello, User" by default.
+2️⃣ Function that takes name and language="Python" → print message.
+3️⃣ Function with keyword arguments (name, age, city) that prints info.
+
+3. Lambda Functions
+
+1️⃣ Create lambda to double a number.
+2️⃣ Lambda to find max of two numbers.
+3️⃣ Use lambda + filter() to get even numbers from list [1,2,3,4,5,6].
+
+4. List Comprehension
+
+1️⃣ Make a list of squares from 1–10.
+2️⃣ Make list of only even numbers 1–20.
+3️⃣ Create list of first letters of words in sentence "Python is super fun".
+
+5. Dictionary Comprehension
+
+1️⃣ Make dict {x: x**2 for x in range(1,6)}.
+2️⃣ Create dict from two lists ["a","b","c"] and [1,2,3].
+3️⃣ Reverse key-value pairs of dict {"x":1,"y":2}.
+
+6. Error Handling
+
+1️⃣ Handle division by zero.
+2️⃣ Catch ValueError when converting string to int.
+3️⃣ Ask user for number until they enter correct one.
+
+7. Working with Files
+
+1️⃣ Create and write numbers 1–10 into file.
+2️⃣ Read file and print all lines in uppercase.
+3️⃣ Copy text from one file to another.
+
+8. JSON (Data Storage)
+
+1️⃣ Save dictionary {"name": "Alan", "age": 18} to JSON file.
+2️⃣ Read it back and print values.
+3️⃣ Add new field "city": "Almaty" and save again.
+
+9. Random Module
+
+1️⃣ Generate 10 random integers between 1–50.
+2️⃣ Shuffle a list [1,2,3,4,5].
+3️⃣ Pick random element from list of names.
+
+10. Datetime Module
+
+1️⃣ Print current date and time.
+2️⃣ Print current day of the week.
+3️⃣ Calculate how many days until New Year.
+
+11. Map, Filter, Reduce
+
+1️⃣ Use map() to square numbers in [1,2,3,4,5].
+2️⃣ Use filter() to keep only numbers > 10.
+3️⃣ Use reduce() to find product of list numbers.
+
+12. Advanced Lists
+
+1️⃣ Remove all duplicates from a list.
+2️⃣ Find second largest number in list.
+3️⃣ Flatten nested list [[1,2],[3,4]] → [1,2,3,4].
+
+13. Tuples & Sets
+
+1️⃣ Swap two variables without temp variable.
+2️⃣ Find union and intersection of two sets.
+3️⃣ Check if all elements in set are unique.
+
+14. Nested Dictionaries
+
+1️⃣ Create dictionary of students with names and grades.
+2️⃣ Find student with highest grade.
+3️⃣ Add new student to dictionary dynamically.
+
+15. Sorting & Custom Keys
+
+1️⃣ Sort list of tuples by second value.
+2️⃣ Sort dictionary by values.
+3️⃣ Sort list of names ignoring case sensitivity.
+
+16. File Projects
+
+1️⃣ Read file and count each word frequency.
+2️⃣ Find longest word in text file.
+3️⃣ Save reversed text into a new file.
+
+17. Regular Expressions (re module)
+
+1️⃣ Check if string contains digits.
+2️⃣ Find all email addresses in a text.
+3️⃣ Replace all spaces with underscores using regex.
+
+18. Advanced Conditions
+
+1️⃣ Check if number is between 10 and 50.
+2️⃣ Check if word starts with “P” and ends with “n”.
+3️⃣ Check if all list items are positive.
+
+19. Working with Modules
+
+1️⃣ Import math and use math.factorial().
+2️⃣ Import statistics and find mean of list.
+3️⃣ Use os to list all files in current directory.
+
+20. Mini Projects 💻
+
+1️⃣ Password Generator: generate strong random password with letters & numbers.
+2️⃣ Simple Quiz: ask 5 questions, count score.
+3️⃣ To-Do List (file version): add, show, and save tasks to file.
+
+Level 4 
+
+🧩 Level 4 — OOP (20 Python Tasks)
+1. Basic Class
+
+Create a class Person with attributes name and age.
+Create an object and print the person’s info.
+
+2. Constructor (__init__)
+
+Make class Car with a constructor that sets brand and year.
+Print them when object is created.
+
+3. Method Inside Class
+
+Add a method greet() inside Person that prints "Hello, my name is <name>".
+
+4. Class with Calculation
+
+Create class Rectangle with width and height.
+Add a method to calculate area.
+
+5. Modify Object Data
+
+Create a class Counter with attribute count.
+Add methods increase() and decrease() to change value.
+
+6. Multiple Objects
+
+Create class Book and make 3 book objects with different titles and authors.
+Print all of them.
+
+7. Default Values
+
+Create class Student with default grade="A".
+If no grade is given when creating student, it should use "A".
+
+8. Class with Conditional Logic
+
+Create class Temperature with attribute celsius.
+Add method to convert it to Fahrenheit.
+
+9. Using __str__
+
+Create class Movie that prints nicely when using print(movie).
+Example output: "Movie: Inception (2010)".
+
+10. Static Method
+
+Create class MathHelper with static method add(a,b) that returns sum without needing an object.
+
+11. Class Variables
+
+Create class Dog with a class variable species = "Canine".
+Print species from two different objects.
+
+12. Inheritance
+
+Create parent class Animal with method speak().
+Make child class Dog that prints "Woof!".
+
+13. Inheritance + Constructor
+
+Parent: Person(name)
+Child: Student(name, grade)
+Make Student call parent’s constructor using super().
+
+14. Method Overriding
+
+Parent Shape has method area().
+Child Circle overrides it to return actual circle area using math.pi.
+
+15. Encapsulation (Private Attribute)
+
+Create class Account with private variable __balance.
+Add methods deposit() and get_balance() to manage it safely.
+
+16. Property Decorator
+
+Create class Temperature with private _celsius.
+Use @property and @setter to get and set Celsius safely.
+
+17. Composition (Class inside Class)
+
+Create Engine class and Car class that has an engine.
+When printing car info, include engine type.
+
+18. Class List Management
+
+Create class Library that holds list of books.
+Add methods add_book() and show_books().
+
+19. Polymorphism
+
+Create classes Cat and Dog, both with method speak().
+Write a function that takes any animal and calls .speak().
+
+20. Mini Project: Bank System 🏦
+
+Create class BankAccount:
+
+Attributes: owner, balance
+
+Methods: deposit(), withdraw(), show_balance()
+Prevent withdrawing more than available balance.

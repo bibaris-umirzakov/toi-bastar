@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Погода</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        
+        nav li {
+            margin: 0 15px;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+        
+        hr {
+            border: none;
+            border-top: 1px solid #ddd;
+            margin: 20px 0;
+        }
+        
+        .tabs {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+        }
+        
+        .tab.active {
+            border-bottom: 2px solid #007bff;
+            font-weight: bold;
+        }
+        
+        .weather-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .weather-table th, .weather-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .weather-table th {
+            background-color: #f8f9fa;
+            font-weight: bold;
+        }
+        
+        .day-header {
+            background-color: #e9ecef;
+            font-weight: bold;
+        }
+        
+        .favorites {
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        
+        .favorite-item {
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .favorite-item:last-child {
+            border-bottom: none;
+        }
+        
+        .favorite-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        
+        .favorite-subtitle {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        
+        .details {
+            margin-top: 15px;
+        }
+        
+        .details p {
+            margin-bottom: 5px;
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav li {
+                margin: 5px 0;
+            }
+            
+            .tabs {
+                flex-wrap: wrap;
+            }
+            
+            .weather-table {
+                font-size: 14px;
+            }
+            
+            .weather-table th, .weather-table td {
+                padding: 8px 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+  <ul>
+    <li><a href="Weather application.html">Home</a></li>
+    <li><a href=></a></li>
+  </ul>
+</nav>
+    <div class="container">
+        <header>
+            <h1>Погода</h1>
+            <nav>
+                <ul>
+                    <li><a href="#">УФ-индекс</a></li>
+                    <li><a href="#">Активность пальцы</a></li>
+                    <li><a href="#">Карта осадков</a></li>
+                    <li><a href="#">Прогноз на месяц</a></li>
+                    <li><a href="#">На 10 дней</a></li>
+                    <li><a href="#">Ещё</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <hr>
+        
+        <section>
+            <h2>Погода на 10 дней</h2>
+            
+            <div class="tabs">
+                <div class="tab active">Общий</div>
+                <div class="tab">Сад и огород</div>
+                <div class="tab">На дорогах</div>
+                <div class="tab">Летний спорт</div>
+            </div>
+            
+            <table class="weather-table">
+                <thead>
+                    <tr>
+                        <th>Сегодня, 30 сентября</th>
+                        <th>ощущается</th>
+                        <th>ветер, м/с</th>
+                        <th>влажность</th>
+                        <th>давление, мм рт. ст.</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Утром</td>
+                        <td>+15°</td>
+                        <td>+14°</td>
+                        <td>2 < 3</td>
+                        <td>63%</td>
+                        <td>717</td>
+                    </tr>
+                    <tr>
+                        <td>Днём</td>
+                        <td>+22°</td>
+                        <td>+20°</td>
+                        <td>3 < 3</td>
+                        <td>38%</td>
+                        <td>716</td>
+                    </tr>
+                    <tr>
+                        <td>Вечером</td>
+                        <td>+17°</td>
+                        <td>+15°</td>
+                        <td>2 < 3</td>
+                        <td>49%</td>
+                        <td>715</td>
+                    </tr>
+                    <tr>
+                        <td>Ночью</td>
+                        <td>+13°</td>
+                        <td>+10°</td>
+                        <td>2 < 3</td>
+                        <td>56%</td>
+                        <td>714</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <table class="weather-table">
+                <thead>
+                    <tr>
+                        <th>Завтра, 1 октября</th>
+                        <th>ощущается</th>
+                        <th>ветер, м/с</th>
+                        <th>влажность</th>
+                        <th>давление, мм рт. ст.</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Утром</td>
+                        <td>+11°</td>
+                        <td>+8°</td>
+                        <td>3 < 3</td>
+                        <td>71%</td>
+                        <td>716</td>
+                    </tr>
+                    <tr>
+                        <td>Днём</td>
+                        <td>+10°</td>
+                        <td>+7°</td>
+                        <td>4 < 3</td>
+                        <td>81%</td>
+                        <td>718</td>
+                    </tr>
+                    <tr>
+                        <td>Вечером</td>
+                        <td>+9°</td>
+                        <td>+5°</td>
+                        <td>4 < 3</td>
+                        <td>79%</td>
+                        <td>718</td>
+                    </tr>
+                    <tr>
+                        <td>Ночью</td>
+                        <td>+7°</td>
+                        <td>+3°</td>
+                        <td>4 < 3</td>
+                        <td>75%</td>
+                        <td>718</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        
+        <hr>
+        
+        <section class="favorites">
+            <h2>В избранное</h2>
+            
+            <div class="favorite-item">
+                <div class="favorite-title">Крассанер BTD SEALON C+ разгоном до 100 км/ч за 0,5 с</div>
+                <div class="favorite-subtitle">юм-слухами</div>
+                <div class="details">
+                    <p>Световой день: 06:17</p>
+                    <p>Световой день: 11 ч 48 мин</p>
+                    <p>Фаза луны: 5, умеренный</p>
+                    <p>Магнитное поле: 7, сильная буря</p>
+                </div>
+            </div>
+            
+            <div class="favorite-item">
+                <div class="favorite-title">Установка зубных имплантов в Шымкенте. Самокультер цены с тройным</div>
+                <div class="favorite-subtitle">СВЕТ ПОПЛАНИРОВАНИЯ ПОСОБЕ РИТЕСА С БРАЧОМ</div>
+            </div>
+            
+            <div class="favorite-item">
+                <div class="favorite-title">GEELY с выгодой до 5 000 ОООгг. Рассрочки до 3 лет</div>
+                <div class="favorite-subtitle">силу-слухами</div>
+                <div class="details">
+                    <p>Световой день: 06:18</p>
+                    <p>Световой день: 11 ч 46 мин</p>
+                    <p>Фаза луны: 6, умеренный</p>
+                    <p>Магнитное поле: 3, спокойное</p>
+                </div>
+            </div>
+            
+            <div class="favorite-item">
+                <div class="favorite-title">Выбирайте в Ли CHEFY с выгодой до 2 500 ОООгг в октябре!</div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Simple tab functionality
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>UV Index Card - Recreation</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+   body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto; background:linear-gradient(180deg,#0b1220 0%, #07101a 100%); color:#e6eef8; margin:0;}
+    .app{display:flex; min-height:100vh; gap:24px; padding:28px;}
+    .uv-gradient { background: linear-gradient(180deg,#b8860b,#8b5a00); }
+    .glass { background: rgba(255,255,255,0.03); backdrop-filter: blur(6px); border-radius:16px; }
+    .sun-blob { width:110px; height:110px; border-radius:50%; background:#ffd54d; position:relative; display:flex; align-items:center; justify-content:center; }
+    .little-eye { width:8px; height:8px; background:#222; border-radius:50%; box-shadow:14px 0 #222; }
+    .timeline .bar { height:36px; border-radius:8px; display:inline-flex; align-items:center; justify-content:center; font-weight:600; min-width:44px; }
+    .sidebar{width:260px; background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent); border-radius:16px; padding:20px; display:flex; flex-direction:column; gap:18px}
+    .logo{display:flex; gap:10px; align-items:center}
+    .logo .dot{width:36px;height:36px;border-radius:50%;background:linear-gradient(45deg,#ff4d4d,#ffb86b);display:inline-flex;align-items:center;justify-content:center;color:#111;font-weight:700}
+    .nav{display:flex;flex-direction:column;gap:10px;margin-top:6px}
+    .nav a{color:var(--muted); text-decoration:none; padding:8px 10px; border-radius:8px}
+    .nav a.active{background:var(--glass); color:#e6eef8}
+    .sidebar .download{margin-top:auto; padding:12px;border-radius:10px;background:linear-gradient(90deg, rgba(255,255,255,0.02), transparent); color:var(--muted); font-size:14px}
+
+  </style>
+</head>
+<body class="antialiased p-8">
+  <aside class="sidebar card">
+      <div class="logo"><span class="dot">A</span> <div>Погода</div></div>
+      <nav class="nav">
+        <a class="active" href="Weather application.html">Главная</a>
+        <a href="UV_Index.html">УФ‑индекс</a>
+        <a href="pollen.html">Пыльца</a>
+        <a href="weather_month.html">Прогноз на месяц</a>
+        <a href="the_weather_for_10days.html">На 10 дней</a>
+      </nav>
+      <button style="width:100%;padding:12px;border-radius:10px;border:0;background:linear-gradient(90deg,#ff7a5a,#ffb86b);color:#111;font-weight:700;cursor:pointer">Скачать приложение</button>
+    </aside>
+  <div class="max-w-4xl mx-auto">
+    <div class="glass overflow-hidden">
+      <div class="uv-gradient p-6 flex gap-6 items-center">
+        <div class="flex-1">
+          <div class="flex items-center gap-3">
+            <div class="px-3 py-1 rounded-full bg-black/20 text-sm.grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px">УФ‑индекс</div>
+            <div class="text-3xl font-bold ml-2">Сейчас умеренный <span class="ml-3 inline-block px-2 py-1 rounded-full bg-black/20">3</span></div>
+          </div>
+          <p class="mt-3 text-zinc-100/90">Солнце спокойное. Но крем с панамой не помешает</p>
+          <div class="mt-6 timeline flex items-center gap-2">
+            <div class="bar bg-zinc-800 text-zinc-400">09</div>
+            <div class="bar bg-amber-700 text-black">3</div>
+            <div class="bar bg-amber-600 text-black">4</div>
+            <div class="bar bg-amber-600 text-black">4</div>
+            <div class="bar bg-amber-500 text-black">5</div>
+            <div class="bar bg-amber-700 text-black">3</div>
+            <div class="bar bg-zinc-800 text-zinc-400">2</div>
+            <div class="bar bg-zinc-800 text-zinc-400">1</div>
+            <div class="bar bg-zinc-800 text-zinc-400">0</div>
+          </div>
+        </div>
+        <div class="w-36 h-36 flex items-center justify-center">
+          <div class="sun-blob"><div class="little-eye"></div></div>
+        </div>
+      </div>
+      <div class="p-6 bg-zinc-800">
+        <div class="grid grid-cols-3 gap-4">
+          <div class="p-4 bg-zinc-900 rounded-lg">
+            <h4 class="font-semibold">Какой бывает УФ‑индекс</h4>
+            <div class="flex gap-2 mt-3">
+              <div class="w-10 h-10 rounded-full bg-lime-500"></div>
+              <div class="w-10 h-10 rounded-full bg-amber-400"></div>
+              <div class="w-10 h-10 rounded-full bg-orange-600"></div>
+              <div class="w-10 h-10 rounded-full bg-red-600"></div>
+              <div class="w-10 h-10 rounded-full bg-purple-700"></div>
+            </div>
+          </div>
+          <div class="p-4 bg-zinc-900 rounded-lg col-span-2">
+            <h4 class="font-semibold">Часовой прогноз</h4>
+            <div class="mt-3 text-sm text-zinc-400">09:00 — 19:00 (показано цветами)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

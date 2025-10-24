@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Weather — Demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0f1720; --card:#0b1220; --muted:#9aa3b2; --accent:#60a5fa;
+      --glass: rgba(255,255,255,0.03);
+    }
+    *{box-sizing:border-box}
+    body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto; background:linear-gradient(180deg,#0b1220 0%, #07101a 100%); color:#e6eef8; margin:0;}
+    .app{display:flex; min-height:100vh; gap:24px; padding:28px;}
+    .sidebar{width:260px; background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent); border-radius:16px; padding:20px; display:flex; flex-direction:column; gap:18px}
+    .logo{display:flex; gap:10px; align-items:center}
+    .logo .dot{width:36px;height:36px;border-radius:50%;background:linear-gradient(45deg,#ff4d4d,#ffb86b);display:inline-flex;align-items:center;justify-content:center;color:#111;font-weight:700}
+    .nav{display:flex;flex-direction:column;gap:10px;margin-top:6px}
+    .nav a{color:var(--muted); text-decoration:none; padding:8px 10px; border-radius:8px}
+    .nav a.active{background:var(--glass); color:#e6eef8}
+    .sidebar .download{margin-top:auto; padding:12px;border-radius:10px;background:linear-gradient(90deg, rgba(255,255,255,0.02), transparent); color:var(--muted); font-size:14px}
+
+    .main{flex:1; display:flex; flex-direction:column; gap:18px}
+    .top{display:flex; gap:18px; align-items:flex-start}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent); border-radius:16px; padding:18px}
+
+    .current{flex:1; display:flex; gap:20px; align-items:center}
+    .temp{font-size:72px; font-weight:700; line-height:1}
+    .conditions{display:flex; flex-direction:column; gap:8px}
+    .location{font-weight:600; color:var(--muted)}
+    .meta{display:flex; gap:12px; color:var(--muted); font-size:14px}
+
+    .map{width:340px; height:160px; border-radius:12px; background:linear-gradient(180deg,#061019,#07202b); display:flex; align-items:center; justify-content:center; color:var(--muted); font-size:14px}
+
+    .hourly{display:flex; gap:12px; overflow:auto; padding:12px 6px}
+    .hour{min-width:78px; padding:10px; border-radius:10px; background:rgba(255,255,255,0.02); text-align:center}
+    .hour .time{font-size:13px; color:var(--muted)}
+    .hour .deg{font-weight:700; font-size:18px; margin-top:6px}
+
+    .cards-row{display:grid; grid-template-columns:repeat(3,1fr); gap:12px}
+    .small{padding:14px}
+
+    .feels{display:flex; gap:12px; align-items:center; color:var(--muted)}
+
+    /* New sections */
+    .health{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px}
+    .health .hcard{background:rgba(255,255,255,0.03); border-radius:12px; padding:14px}
+    .health .title{font-weight:700; margin-bottom:6px}
+    .ten-days{display:flex; overflow:auto; gap:12px; padding:12px 0}
+    .day{min-width:90px; background:rgba(255,255,255,0.03); border-radius:12px; padding:10px; text-align:center}
+    .day .dtemp{font-weight:600; font-size:18px}
+  </style>
+</head>
+<script>
+    async function fetchWeather(city = "Shymkent") {
+      try {
+        const url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&lang=en&appid=${API_KEY}`;
+        const res = await fetch(url);
+        const data = await res.json();n 
+
+        // Current weather
+        document.querySelector("#current-temp").textContent = 
+          `${Math.round(data.list[0].main.temp)}°C`;
+        document.querySelector("#current-desc").textContent = 
+          data.list[0].weather[0].description;
+
+        // Forecast display
+        const forecastContainer = document.querySelector("#forecast-10days");
+        forecastContainer.innerHTML = "";
+
+        let labels = [];
+        let temps = [];
+        for (let i = 0; i < data.list.length; i += 8) {
+          const item = data.list[i];
+          const date = new Date(item.dt_txt);
+          const dayName = date.toLocaleDateString("en-US", { weekday: "short" });
+
+          labels.push(dayName);
+          temps.push(Math.round(item.main.temp));
+
+          forecastContainer.innerHTML += `
+            <div class="forecast-day">
+              <p>${dayName}</p>
+              <p>${Math.round(item.main.temp)}°C</p>
+              <p>${item.weather[0].main}</p>
+            </div>
+          `;
+        }
+
+        // Chart.js temperature diagram
+        const ctx = document.getElementById("tempChart").getContext("2d");
+        new Chart(ctx, {
+          type: "line",
+          data: {
+            labels: labels,
+            datasets: [{
+              label: "Daily Temperature (°C)",
+              data: temps,
+              borderColor: "#4BC0C0",
+              backgroundColor: "rgba(75,192,192,0.2)",
+              fill: true,
+              tension: 0.3
+            }]
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: { labels: { color: "#fff" } }
+            },
+            scales: {
+              x: { ticks: { color: "#fff" } },
+              y: { ticks: { color: "#fff" } }
+            }
+          }
+        });
+      } catch (err) {
+        console.error("Error loading weather:", err);
+      }
+    }
+
+    fetchWeather();
+const API_KEY = "66e7aaf26922f9fb4853e537b1b5342e";  
+
+async function fetchWeather(city = "Shymkent") {
+  try {
+    const url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&lang=ru&appid=${API_KEY}`;
+    const res = await fetch(url);
+    const data = await res.json();
+
+    console.log(data); // смотри всю структуру в консоли
+
+    // Текущая погода
+    document.querySelector("#current-temp").textContent = 
+      `${Math.round(data.list[0].main.temp)}°C`;
+    document.querySelector("#current-desc").textContent = 
+      data.list[0].weather[0].description;
+
+    // Прогноз на 10 дней (берём каждые 8 записей = раз в сутки)
+    const forecastContainer = document.querySelector("#forecast-10days");
+    forecastContainer.innerHTML = "";
+    for (let i = 0; i < data.list.length; i += 8) {
+      const item = data.list[i];
+      const date = new Date(item.dt_txt);
+      const dayName = date.toLocaleDateString("ru-RU", { weekday: "short" });
+
+      forecastContainer.innerHTML += `
+        <div class="forecast-day">
+          <p>${dayName}</p>
+          <p>${Math.round(item.main.temp)}°C</p>
+          <p>${item.weather[0].main}</p>
+        </div>
+      `;
+    }
+  } catch (err) {
+    console.error("Ошибка загрузки:", err);
+  }
+}
+
+</script>
+<body>
+  <div class="app">
+    <aside class="sidebar card">
+      <div class="logo"><span class="dot">A</span> <div>Погода</div></div>
+      <nav class="nav">
+        <a class="active" href="#">Главная</a>
+        <a href="UV_Index.html">УФ‑индекс</a>
+        <a href="pollen.html">Пыльца</a>
+        <a href="weather_month.html">Прогноз на месяц</a>
+        <a href="the_weather_for_10days.html">На 10 дней</a>
+        <a href="Climate_helper.html">Climate Helper</a>
+        <a href="global_warming.html">Global Warming</a>
+      </nav>
+      <button style="width:100%;padding:12px;border-radius:10px;border:0;background:linear-gradient(90deg,#ff7a5a,#ffb86b);color:#111;font-weight:700;cursor:pointer">Скачать приложение</button>
+    </aside>
+
+    <main class="main">
+      <!-- previous top cards here -->
+      <div class="top">
+        <div class="card current">
+          <div style="display:flex; align-items:center; gap:18px">
+            <div>
+              <div class="temp" id="temp">+21°</div>
+              <div class="conditions">
+                <div class="location" id="location">Шымкент, Шымкентский дендропарк</div>
+                <div class="meta"><div id="summary">Облачно с прояснениями</div><div id="feels">Ощущается как +18°</div></div>
+              </div>
+            </div>
+            <div style="margin-left:auto; text-align:right">
+              <div style="font-size:13px; color:var(--muted)">Ветер</div>
+              <div style="font-weight:600">3 м/с, СЗ</div>
+              <div style="height:12px"></div>
+              <div style="font-size:13px; color:var(--muted)">Влажность</div>
+              <div style="font-weight:600">36%</div>
+            </div>
+          </div>
+          <div style="margin-top:12px"><div class="hourly" id="hourly"></div></div>
+        </div>
+        <div class="card" style="width:360px; display:flex; flex-direction:column; gap:12px">
+        <iframe 
+  width="650" 
+  height="450" 
+  src="https://embed.windy.com/embed2.html?lat=42.315&lon=69.59&detailLat=42.315&detailLon=69.59&zoom=8&level=surface&overlay=wind&product=ecmwf" 
+  frameborder="0">
+</iframe>
+          <div style="display:flex; gap:8px; justify-content:space-between">
+            <button onclick="toggleFav()" style="padding:8px 12px; border-radius:10px; background:var(--glass); border:0; color:var(--muted)">Добавить в избранное</button>
+            <div style="color:var(--muted); font-size:13px">Последнее обновление: <span id="updated">сейчас</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cards-row">
+        <div class="card small"><div style="font-weight:700; margin-bottom:6px">Завтра</div><div style="color:var(--muted)">+11°, на 11° холоднее, чем сегодня — дождь</div></div>
+        <div class="card small"><div style="font-weight:700; margin-bottom:6px">На этой неделе</div><div style="color:var(--muted)">Похолодает до +11° — почти без осадков</div></div>
+        <div class="card small"><div style="font-weight:700; margin-bottom:6px">Почувствуй себя</div><div style="color:var(--muted)" id="advice">Хорошо для прогулок</div></div>
+      </div>
+
+      <div class="card small">
+        <div style="font-weight:700; margin-bottom:8px">Дополнительно</div>
+        <div class="feels"><div>Давление: <strong id="pressure">716</strong></div><div>Влажность: <strong id="humidity">36%</strong></div><div>Ветер: <strong id="wind">3 м/с</strong></div></div>
+      </div>
+
+      <!-- New Health Section -->
+      <div class="health">
+        <div class="hcard"><div class="title">УФ‑индекс</div><div>3 — умеренный</div></div>
+        <div class="hcard"><div class="title">Пыльца</div><div>нет риска аллергии</div></div>
+        <div class="hcard"><div class="title">Магнитное поле</div><div>спокойное</div></div>
+      </div>
+
+      <!-- 10 Day Forecast -->
+      <div class="card">
+        <div style="font-weight:700; margin-bottom:8px">Прогноз на 10 дней</div>
+        <div class="ten-days" id="tendays"></div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    function fetchWeather(){
+      return new Promise(resolve => {
+        resolve({
+          location: 'Шымкент, Шымкентский дендропарк',
+          temp: 21,
+          feels: 18,
+          summary: 'Облачно с прояснениями. Ночью слабый дождь',
+          humidity: 36,
+          pressure: 716,
+          wind: '3 м/с, СЗ',
+          hourly: [
+            {time:'15:00', temp:21, icon:'⛅'},
+            {time:'16:00', temp:22, icon:'⛅'},
+            {time:'17:00', temp:21, icon:'🌤'},
+            {time:'18:00', temp:19, icon:'☁️'},
+            {time:'19:00', temp:17, icon:'🌥'},
+            {time:'20:00', temp:16, icon:'☁️'},
+            {time:'21:00', temp:15, icon:'☁️'}
+          ],
+          tendays:[
+            {day:'Вт',temp:22,low:6,icon:'⛅'},
+            {day:'Ср',temp:11,low:6,icon:'🌧'},
+            {day:'Чт',temp:19,low:7,icon:'☀️'},
+            {day:'Пт',temp:21,low:9,icon:'☀️'},
+            {day:'Сб',temp:23,low:9,icon:'☀️'},
+            {day:'Вс',temp:21,low:8,icon:'🌤'},
+            {day:'Пн',temp:21,low:8,icon:'☀️'},
+            {day:'Вт',temp:24,low:9,icon:'☀️'},
+            {day:'Ср',temp:23,low:12,icon:'🌤'},
+            {day:'Чт',temp:25,low:12,icon:'☀️'}
+          ]
+        });
+      });
+    }
+
+    function render(data){
+      document.getElementById('temp').textContent = (data.temp>0?'+':'')+data.temp+'°';
+      document.getElementById('location').textContent = data.location;
+      document.getElementById('summary').textContent = data.summary;
+      document.getElementById('feels').textContent = 'Ощущается как '+(data.feels>0?'+':'')+data.feels+'°';
+      document.getElementById('humidity').textContent = data.humidity+'%';
+      document.getElementById('pressure').textContent = data.pressure;
+      document.getElementById('wind').textContent = data.wind;
+      document.getElementById('updated').textContent = new Date().toLocaleTimeString();
+
+      const hourly = document.getElementById('hourly'); hourly.innerHTML = '';
+      data.hourly.forEach(h => {
+        const el=document.createElement('div'); el.className='hour';
+        el.innerHTML=`<div class=\"time\">${h.time}</div><div style=\"font-size:20px; margin-top:8px\">${h.icon}</div><div class=\"deg\">${h.temp>0?'+':''}${h.temp}°</div>`;
+        hourly.appendChild(el);
+      });
+
+      const tendays=document.getElementById('tendays'); tendays.innerHTML='';
+      data.tendays.forEach(d=>{
+        const el=document.createElement('div'); el.className='day';
+        el.innerHTML=`<div>${d.day}</div><div style=\"font-size:20px;margin:4px 0\">${d.icon}</div><div class=\"dtemp\">${d.temp>0?'+':''}${d.temp}°</div><div style=\"font-size:13px;color:var(--muted)\">${d.low>0?'+':''}${d.low}°</div>`;
+        tendays.appendChild(el);
+      });
+    }
+
+    function toggleFav(){alert('Добавлено в избранное (демо)')}
+
+    (async()=>{const data=await fetchWeather(); render(data);})();
+  </script>
+</body>
+</html>

@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Health Tracker</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      margin: 0;
+      padding: 20px;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: var(--title);
+      font-size: 2rem;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .card {
+      background: var(--card);
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      transition: transform 0.2s, background 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    button {
+      background: linear-gradient(135deg, #3498db, #2980b9);
+      border: none;
+      padding: 10px 20px;
+      color: white;
+      border-radius: 10px;
+      margin: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: 0.3s;
+    }
+    button:hover {
+      opacity: 0.9;
+      transform: scale(1.05);
+    }
+
+    .deleteBtn {
+      background: #e74c3c;
+      padding: 5px 10px;
+      font-size: 12px;
+    }
+
+    .progress {
+      height: 20px;
+      background: #ddd;
+      border-radius: 15px;
+      margin: 10px 0;
+      overflow: hidden;
+    }
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #27ae60, #2ecc71);
+      width: 0%;
+      transition: width 0.4s ease-in-out;
+    }
+
+    input, select {
+      padding: 10px;
+      margin: 8px 0;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      width: 80%;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    li {
+      background: var(--habit-bg);
+      margin: 6px 0;
+      padding: 10px;
+      border-radius: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    #adviceBox {
+      background: #eafaf1;
+      border-left: 5px solid #27ae60;
+      padding: 15px;
+      margin-top: 20px;
+      border-radius: 15px;
+      font-style: italic;
+      display: none;
+    }
+
+    /* Themes */
+    :root {
+      --bg: #f9fafc;
+      --text: #2d3436;
+      --title: #2c3e50;
+      --card: white;
+      --habit-bg: #f1f2f6;
+    }
+    .dark {
+      --bg: #181818;
+      --text: #f4f4f4;
+      --title: #f1c40f;
+      --card: #242424;
+      --habit-bg: #2c2c2c;
+    }
+
+    #themeToggle {
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      padding: 10px 15px;
+      border-radius: 10px;
+      background: #8e44ad;
+      color: white;
+    }
+
+    #levelBox {
+      margin-top: 10px;
+      font-weight: bold;
+      font-size: 18px;
+      color: #8e44ad;
+    }
+  </style>
+</head>
+<body>
+  <button id="sendBtn">Send Data to Python</button>
+  <button id="themeToggle" onclick="toggleTheme()">🌙</button>
+  <h1>🌿 Health Tracker</h1>
+
+  <div class="container">
+
+    <!-- Gamification -->
+    <div class="card">
+      <h2>🏆 Progress</h2>
+      <div id="levelBox">Level: 1 | Points: 0</div>
+    </div>
+
+    <!-- Water Tracker -->
+    <div class="card">
+      <h2>💧 Water</h2>
+      <p>Goal: 2000 ml</p>
+      <p>Drank: <span id="waterCount">0</span> ml</p>
+      <div class="progress">
+        <div class="progress-bar" id="waterBar"></div>
+      </div>
+      <button onclick="addWater(250)">+ 250 ml</button>
+      <button onclick="addWater(500)">+ 500 ml</button>
+      <button class="deleteBtn" onclick="resetWater()">Reset</button>
+    </div>
+
+    <!-- Sleep Tracker -->
+    <div class="card">
+      <h2>😴 Sleep</h2>
+      <p>Enter sleep and wake times:</p>
+      <input type="time" id="sleepTime"> → <input type="time" id="wakeTime">
+      <button onclick="calcSleep()">Calculate</button>
+      <p>You slept: <span id="sleepHours">0</span> h</p>
+    </div>
+
+    <!-- Exercise Tracker -->
+    <div class="card">
+      <h2>🏋️‍♂️ Exercise</h2>
+      <select id="exerciseType">
+        <option value="Running">Running</option>
+        <option value="Push-ups">Push-ups</option>
+        <option value="Sit-ups">Sit-ups</option>
+        <option value="Gym">Gym</option>
+      </select>
+      <input type="number" id="exerciseValue" placeholder="minutes/reps">
+      <button onclick="addExercise()">Add</button>
+      <ul id="exerciseList"></ul>
+    </div>
+
+    <!-- Habit Journal -->
+    <div class="card">
+      <h2>📖 Habits</h2>
+      <input type="text" id="habitInput" placeholder="New habit">
+      <button onclick="addHabit()">Add</button>
+      <ul id="habitList"></ul>
+    </div>
+
+    <!-- AI Advice -->
+    <div class="card">
+      <h2>🤖 Advice</h2>
+      <button onclick="getAdvice()">Get Advice</button>
+      <div id="adviceBox"></div>
+    </div>
+
+  </div>
+
+  <script>
+        document.getElementById("sendBtn").addEventListener("click", async () => {
+      const response = await fetch("/save_data", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ steps: 5000, water: 2 }),
+      });
+      const result = await response.json();
+      alert(result.message);
+    });
+    // Data
+    let water = 0;
+    const waterGoal = 2000;
+    let sleepHours = 0;
+    let points = 0;
+    let level = 1;
+    let habits = [];
+    let exercises = [];
+
+    // Load saved data
+    window.onload = () => {
+      if(localStorage.getItem("trackerData")) {
+        let data = JSON.parse(localStorage.getItem("trackerData"));
+        water = data.water;
+        sleepHours = data.sleepHours;
+        points = data.points;
+        level = data.level;
+        habits = data.habits || [];
+        exercises = data.exercises || [];
+
+        updateUI();
+      }
+    };
+
+    function saveData() {
+      localStorage.setItem("trackerData", JSON.stringify({water, sleepHours, points, level, habits, exercises}));
+    }
+
+    // WATER
+    function addWater(amount) {
+      water += amount;
+      if (water > waterGoal) water = waterGoal;
+      updateUI();
+      addPoints(5);
+    }
+
+    function resetWater() {
+      water = 0;
+      updateUI();
+      saveData();
+    }
+
+    // SLEEP
+    function calcSleep() {
+      let sleep = document.getElementById("sleepTime").value;
+      let wake = document.getElementById("wakeTime").value;
+      if (sleep && wake) {
+        let sleepDate = new Date("2025-01-01T" + sleep + ":00");
+        let wakeDate = new Date("2025-01-01T" + wake + ":00");
+        if (wakeDate <= sleepDate) wakeDate.setDate(wakeDate.getDate() + 1);
+        let diff = (wakeDate - sleepDate) / (1000 * 60 * 60);
+        sleepHours = diff;
+        updateUI();
+        addPoints(10);
+      } else {
+        alert("Please enter both sleep and wake time!");
+      }
+    }
+
+    // EXERCISE
+    function addExercise() {
+      let type = document.getElementById("exerciseType").value;
+      let value = document.getElementById("exerciseValue").value;
+      if (value) {
+        exercises.push({type, value});
+        document.getElementById("exerciseValue").value = "";
+        updateUI();
+        addPoints(15);
+        saveData();
+      } else {
+        alert("Enter minutes or reps!");
+      }
+    }
+
+    function deleteExercise(index) {
+      exercises.splice(index, 1);
+      updateUI();
+      saveData();
+    }
+
+    // HABITS
+    function addHabit() {
+      let habit = document.getElementById("habitInput").value;
+      if (habit) {
+        habits.push({name: habit, done: false});
+        document.getElementById("habitInput").value = "";
+        updateUI();
+        saveData();
+      }
+    }
+
+    function toggleHabit(index) {
+      habits[index].done = !habits[index].done;
+      if (habits[index].done) addPoints(20);
+      updateUI();
+      saveData();
+    }
+
+    function deleteHabit(index) {
+      habits.splice(index, 1);
+      updateUI();
+      saveData();
+    }
+
+    // GAMIFICATION
+    function addPoints(amount) {
+      points += amount;
+      if (points >= level * 100) {
+        level++;
+        points = 0;
+        alert("🎉 Congrats! New Level: " + level);
+      }
+      updateUI();
+      saveData();
+    }
+
+    // ADVICE
+    function getAdvice() {
+      let advice = [];
+      if (water < 1500) advice.push("💧 Drink more water!");
+      else advice.push("Great! You are staying hydrated 👍");
+
+      if (sleepHours < 7 && sleepHours > 0) advice.push("😴 Try to sleep more, less than 7 hours is not enough.");
+      else if (sleepHours >= 7) advice.push("Awesome! You got enough rest 👌");
+
+      if (exercises.length === 0) {
+        advice.push("🏋️‍♂️ Add some exercise today!");
+      } else {
+        advice.push("🔥 Good job, you exercised!");
+      }
+
+      document.getElementById("adviceBox").style.display = "block";
+      document.getElementById("adviceBox").innerHTML = advice.join("<br>");
+    }
+
+    // THEME SWITCH
+    function toggleTheme() {
+      document.body.classList.toggle("dark");
+      let btn = document.getElementById("themeToggle");
+      btn.textContent = document.body.classList.contains("dark") ? "☀️" : "🌙";
+    }
+
+    // UI Update
+    function updateUI() {
+      // water
+      document.getElementById("waterCount").textContent = water;
+      document.getElementById("waterBar").style.width = (water / waterGoal * 100) + "%";
+      // sleep
+      document.getElementById("sleepHours").textContent = sleepHours.toFixed(1);
+      // gamification
+      document.getElementById("levelBox").textContent = `Level: ${level} | Points: ${points}`;
+      // habits
+      let habitList = document.getElementById("habitList");
+      habitList.innerHTML = "";
+      habits.forEach((habit, i) => {
+        let li = document.createElement("li");
+        li.innerHTML = `<span style="text-decoration:${habit.done ? 'line-through' : 'none'}">${habit.name}</span>
+          <div>
+            <button onclick="toggleHabit(${i})">✔</button>
+            <button class="deleteBtn" onclick="deleteHabit(${i})">✖</button>
+          </div>`;
+        habitList.appendChild(li);
+      });
+      // exercises
+      let exerciseList = document.getElementById("exerciseList");
+      exerciseList.innerHTML = "";
+      exercises.forEach((ex, i) => {
+        let li = document.createElement("li");
+        li.innerHTML = `${ex.type}: ${ex.value} <button class="deleteBtn" onclick="deleteExercise(${i})">✖</button>`;
+        exerciseList.appendChild(li);
+      });
+    }
+  </script>
+</body>
+</html>

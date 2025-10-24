@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Climate & Weather Helper</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f4f9f9; display: flex; justify-content: center; align-items: center; height: 100vh; }
+    .chat-container { width: 400px; height: 500px; background: white; border-radius: 12px; box-shadow: 0 0 10px rgba(0,0,0,0.2); display: flex; flex-direction: column; }
+    .chatbox { flex: 1; padding: 10px; overflow-y: auto; }
+    .msg { margin: 8px 0; padding: 10px; border-radius: 10px; max-width: 80%; white-space: pre-line; }
+    .user { background: #007bff; color: white; align-self: flex-end; }
+    .bot { background: #e5e5ea; align-self: flex-start; }
+    .input-area { display: flex; border-top: 1px solid #ccc; }
+    input { flex: 1; padding: 10px; border: none; border-radius: 0 0 0 12px; outline: none; }
+    button { padding: 10px; border: none; background: #007bff; color: white; border-radius: 0 0 12px 0; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <div class="chat-container">
+    <div id="chatbox" class="chatbox"></div>
+    <div class="input-area">
+      <input id="userInput" type="text" placeholder="Ask about weather or climate..." />
+      <button id="sendBtn">Send</button>
+    </div>
+  </div>
+
+  <script>
+    const chatbox = document.getElementById("chatbox");
+    const input = document.getElementById("userInput");
+    const sendBtn = document.getElementById("sendBtn");
+
+    const API_KEY = "66e7aaf26922f9fb4853e537b1b5342e"; 
+
+    function addMessage(text, sender) {
+      let msg = document.createElement("div");
+      msg.classList.add("msg", sender);
+      msg.innerText = text;
+      chatbox.appendChild(msg);
+      chatbox.scrollTop = chatbox.scrollHeight;
+    }
+
+    async function botReply(message) {
+      message = message.toLowerCase();
+
+     
+      if (message.includes("climate") || message.includes("global warming") || message.includes("reduce impact")) {
+        return "🌍 To reduce global warming impact:\n1. Save energy 💡\n2. Use public transport 🚍\n3. Plant trees 🌱\n4. Reduce plastic use ♻️\n5. Support renewable energy ⚡";
+      }
+
+      
+      if (message.includes("weather") || message.includes("temperature")) {
+        const city = message.split("in ")[1] || "London";
+        try {
+          const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`);
+          const data = await res.json();
+
+          if (data.cod !== 200) return "❌ City not found. Try asking like: 'weather in Paris'.";
+
+          return `🌦 Weather in ${data.name}:\n- ${data.weather[0].description}\n- 🌡 Temp: ${data.main.temp}°C\n- 💧 Humidity: ${data.main.humidity}%\n- 🌬 Wind: ${data.wind.speed} m/s`;
+        } catch (err) {
+          return "⚠️ Error fetching weather data. Please check API key or connection.";
+        }
+      }
+
+      // Default reply
+      return "🤖 I can help with:\n- Weather (e.g., 'weather in New York')\n- Climate tips (e.g., 'how to reduce global warming impact')";
+    }
+
+    // Send button click
+    sendBtn.onclick = async () => {
+      const userMsg = input.value;
+      if (userMsg.trim() === "") return;
+      addMessage(userMsg, "user");
+      input.value = "";
+
+      // Show loading
+      let loadingMsg = document.createElement("div");
+      loadingMsg.classList.add("msg", "bot");
+      loadingMsg.innerText = "⏳ Thinking...";
+      chatbox.appendChild(loadingMsg);
+      chatbox.scrollTop = chatbox.scrollHeight;
+
+      
+      let dots = 0;
+      const loadingInterval = setInterval(() => {
+        dots = (dots + 1) % 4;
+        loadingMsg.innerText = "⏳ Thinking" + ".".repeat(dots);
+      }, 500);
+
+      
+      const reply = await botReply(userMsg);
+
+      
+      clearInterval(loadingInterval);
+      loadingMsg.innerText = reply;
+    };
+
+    
+    input.addEventListener("keydown", function(event) {
+      if (event.key === "Enter" && !event.shiftKey) {
+        event.preventDefault();
+        sendBtn.click();
+      }
+    });
+    
+    async function botReply(message) {
+  message = message.toLowerCase();
+
+ 
+  if (message.includes("climate") || message.includes("global warming") || message.includes("reduce impact")) {
+    return "🌍 To reduce global warming impact:\n1. Save energy 💡\n2. Use public transport 🚍\n3. Plant trees 🌱\n4. Reduce plastic use ♻️\n5. Support renewable energy ⚡";
+  }
+
+ 
+  if (message.includes("weather") || message.includes("temperature")) {
+    const city = message.split("in ")[1] || "London";
+    try {
+      const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`);
+      const data = await res.json();
+
+      if (data.cod !== 200) return "❌ City not found. Try asking like: 'weather in Paris'.";
+
+      return `🌦 Weather in ${data.name}:\n- ${data.weather[0].description}\n- 🌡 Temp: ${data.main.temp}°C\n- 💧 Humidity: ${data.main.humidity}%\n- 🌬 Wind: ${data.wind.speed} m/s`;
+    } catch (err) {
+      return "⚠️ Error fetching weather data. Please check API key or connection.";
+    }
+  }
+
+ 
+  if (message.includes("can i go out") || message.includes("what to wear") || message.includes("going outside")) {
+    const city = message.split("in ")[1] || "London"; 
+    try {
+      const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`);
+      const data = await res.json();
+
+      if (data.cod !== 200) return "❌ City not found. Try asking like: 'Can I go out in Paris?'";
+
+      const temp = data.main.temp;
+      const condition = data.weather[0].main.toLowerCase();
+      let advice = `🌦 Weather in ${data.name}: ${data.weather[0].description}, ${temp}°C\n`;
+
+      if (condition.includes("rain")) advice += "☔ It's rainy. Take an umbrella and a raincoat.";
+      else if (condition.includes("snow")) advice += "❄️ It's snowy. Dress warmly with a coat, hat, and scarf.";
+      else if (temp <= 5) advice += "🧥 It's cold. Wear a warm jacket and layers.";
+      else if (temp <= 15) advice += "🧣 Cool weather. A light jacket or sweater is recommended.";
+      else advice += "👕 The weather is nice. Light clothing is fine.";
+
+      return advice;
+    } catch (err) {
+      return "⚠️ Error fetching weather data for advice. Please check API key or connection.";
+    }
+  }
+
+  // Default reply
+  return "🤖 I can help with:\n- Weather (e.g., 'weather in New York')\n- Climate tips (e.g., 'how to reduce global warming impact')\n- Going out advice (e.g., 'Can I go out in London?')";
+}
+
+
+  </script>
+</body>
+</html>
